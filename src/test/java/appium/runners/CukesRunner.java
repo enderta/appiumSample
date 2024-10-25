@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {
                 "html:target/cucumber-reports.html"
         },
-        features = "/home/ender/IdeaProjects/appiuTest/resources",
+        features = "resources/features",
         glue = "appium/step_definitions",
         dryRun = false,
         tags = "@wip"
