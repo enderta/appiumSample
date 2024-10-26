@@ -52,9 +52,11 @@ public class Driver {
         capabilities.setCapability("autoGrantPermissions", true);
 
         if (driverName.equals("android")) {
-            capabilities.setCapability("app", "/home/cyf/IdeaProjects/appiumSample/sauceLab.apk");
-            capabilities.setCapability("appPackage", "com.swaglabsmobileapp");
-            capabilities.setCapability("appActivity", "com.swaglabsmobileapp.SplashActivity");
+            if (driverName.equals("android")) {
+                capabilities.setCapability("app", "/home/cyf/IdeaProjects/appiumSample/sauceLab.apk");
+                capabilities.setCapability("appPackage", "com.swaglabsmobileapp");
+                capabilities.setCapability("appActivity", "com.swaglabsmobileapp.MainActivity");
+            }
         } else if (driverName.equals("chrome")) {
             capabilities.setCapability("browserName", "chrome");
             capabilities.setCapability("chromedriverExecutable", "/home/cyf/IdeaProjects/appiumSample/chromedriver");

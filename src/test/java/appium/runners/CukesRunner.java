@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
         features = "resources/features",
         glue = "appium/step_definitions",
         dryRun = false,
-        tags = "@wip"
+        tags = "@apk"
 )
 public class CukesRunner {
 }
