@@ -22,7 +22,7 @@ Feature: User Signup and Account Deletion on Automation Exercise
     And enters valid email and password
     And clicks on 'Login' button
     Then 'Logged in as username' should be visible
-@wip
+
   Scenario: Login with invalid credentials
     When the user clicks on 'Signup / Login' button
     And enters invalid email and password
