@@ -57,8 +57,7 @@ public class suace {
 
     @When("the user adds the product to the cart")
     public void the_user_adds_the_product_to_the_cart() throws InterruptedException {
-        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"ADD TO CART\"]")).click();
-        Thread.sleep(2000);
+       basic.addProductToCart();
     }
 
     @Then("the cart badge should display {string}")
@@ -70,8 +69,7 @@ public class suace {
 
     @When("the user removes the product from the cart")
     public void the_user_removes_the_product_from_the_cart() throws InterruptedException {
-       driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"REMOVE\"]")).click();
-       Thread.sleep(2000);
+       basic.removeFromCart();
     }
 
     @Then("the cart should be empty")
