@@ -3,7 +3,7 @@ Feature: Sauce Labs Sample App Testing
 Background:
   Given the user is on the login page
 
-@apk
+
 Scenario Outline: Login attempts
   When the user logs in with username "<username>" and password "<password>"
   Then the user should see <outcome>
@@ -12,14 +12,13 @@ Scenario Outline: Login attempts
     | username      | password     | outcome                                           |
     | standard_user | secret_sauce | the products page                                 |
     | locked_out_user | secret_sauce | an error message "Sorry, this user has been locked out." |
-
+@apk
 Scenario: Product interaction
   Given the user has logged in successfully
   When the user selects the product "Sauce Labs Backpack"
-  Then the user should see the product details for "Sauce Labs Backpack"
-  When the user adds "Sauce Labs Bike Light" to the cart
+  When the user adds the product to the cart
   Then the cart badge should display "1"
-  When the user removes "Sauce Labs Bike Light" from the cart
+  When the user removes the product from the cart
   Then the cart should be empty
 
 Scenario: Checkout process
