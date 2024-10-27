@@ -9,6 +9,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.util.*;
 import pages.Basic;
 
 public class suace {
@@ -80,4 +81,43 @@ public class suace {
         Assert.assertEquals("", cartNum);
         System.out.println("cart: "+cartNum);
     }
+
+
+@Given("the user has items in the cart")
+public void the_user_has_items_in_the_cart() throws InterruptedException {
+   String prodName="Sauce Labs Backpack";
+   driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"test-Item title\" and @text='" + prodName + "']")).click();
+   Thread.sleep(2000);
+   basic.addProductToCart();
+    
+}
+@When("the user proceeds to checkout")
+public void the_user_proceeds_to_checkout() throws InterruptedException {
+   driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\"test-Cart\"]/android.view.ViewGroup/android.widget.ImageView")).click();
+   Thread.sleep(2000);
+   driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\"test-CHECKOUT\"]")).click();
+   Thread.sleep(2000);
+   
+}
+
+@When("completes the purchase with:")
+public void completesPurchaseWith(Map<String, String> purchaseDetails) throws InterruptedException {
+    String firstName = purchaseDetails.get("First Name");
+    String lastName = purchaseDetails.get("Last Name");
+    String zipCode = purchaseDetails.get("Zip Code");
+
+    driver.findElement(AppiumBy.accessibilityId("test-First Name")).sendKeys(firstName);
+    driver.findElement(AppiumBy.accessibilityId("test-Last Name")).sendKeys(lastName);
+    driver.findElement(AppiumBy.accessibilityId("test-Zip/Postal Code")).sendKeys(zipCode);
+
+
+
+
+}
+@Then("the user should see the order confirmation page")
+public void the_user_should_see_the_order_confirmation_page() throws InterruptedException {
+   Thread.sleep(2000);
+       driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"CONTINUE\"]")).click();
+       Thread.sleep(2000);
+      }
 }
