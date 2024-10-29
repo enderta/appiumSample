@@ -2,6 +2,14 @@ package appium.step_definitions;
 
 import java.net.MalformedURLException;
 
+import appium.Utils;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import java.time.Duration;
+import java.util.Collections;
+
 import org.junit.Assert;
 import appium.driver.Driver;
 import io.appium.java_client.AppiumBy;
@@ -10,10 +18,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.*;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
+import org.openqa.selenium.remote.RemoteWebElement;
 import pages.Basic;
 
 public class suace {
-   
+
     private AndroidDriver driver;
     Basic basic = new Basic();
 
@@ -89,35 +100,45 @@ public void the_user_has_items_in_the_cart() throws InterruptedException {
    driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"test-Item title\" and @text='" + prodName + "']")).click();
    Thread.sleep(2000);
    basic.addProductToCart();
-    
+
 }
 @When("the user proceeds to checkout")
 public void the_user_proceeds_to_checkout() throws InterruptedException {
    driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\"test-Cart\"]/android.view.ViewGroup/android.widget.ImageView")).click();
    Thread.sleep(2000);
+    Point start = new Point(104, 837);
+    Point end = new Point(8, 835);
+    Utils.swipe(driver, start, end);
+    Thread.sleep(2000);
    driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\"test-CHECKOUT\"]")).click();
    Thread.sleep(2000);
-   
-}
-
-@When("completes the purchase with:")
-public void completesPurchaseWith(Map<String, String> purchaseDetails) throws InterruptedException {
-    String firstName = purchaseDetails.get("First Name");
-    String lastName = purchaseDetails.get("Last Name");
-    String zipCode = purchaseDetails.get("Zip Code");
-
-    driver.findElement(AppiumBy.accessibilityId("test-First Name")).sendKeys(firstName);
-    driver.findElement(AppiumBy.accessibilityId("test-Last Name")).sendKeys(lastName);
-    driver.findElement(AppiumBy.accessibilityId("test-Zip/Postal Code")).sendKeys(zipCode);
-
-
 
 
 }
-@Then("the user should see the order confirmation page")
-public void the_user_should_see_the_order_confirmation_page() throws InterruptedException {
-   Thread.sleep(2000);
-       driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"CONTINUE\"]")).click();
-       Thread.sleep(2000);
-      }
+
+    @When("completes the purchase with:")
+    public void completesPurchaseWith(Map<String, String> purchaseDetails) throws InterruptedException {
+        String firstName = purchaseDetails.get("First Name");
+        String lastName = purchaseDetails.get("Last Name");
+        String zipCode = purchaseDetails.get("Zip Code");
+
+        driver.findElement(AppiumBy.accessibilityId("test-First Name")).sendKeys(firstName);
+        driver.findElement(AppiumBy.accessibilityId("test-Last Name")).sendKeys(lastName);
+        driver.findElement(AppiumBy.accessibilityId("test-Zip/Postal Code")).sendKeys(zipCode);
+
+        // Tap the continue button
+
+
+        // Perform a swipe on the element with the specified text
+
+    }
+    // suace.java
+    @Then("the user should see the order confirmation page")
+    public void the_user_should_see_the_order_confirmation_page() throws InterruptedException {
+        Thread.sleep(2000);
+        WebElement continueButton = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"CONTINUE\"]"));
+        Utils.tapElement(driver, continueButton);
+        Thread.sleep(2000);
+
+    }
 }
