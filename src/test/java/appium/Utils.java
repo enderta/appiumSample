@@ -36,13 +36,6 @@ public class Utils {
         Thread.sleep(2000);
     }
 
-    public static void swipe(AppiumDriver driver,String direction, RemoteWebElement element) {
-        driver.executeScript("gesture: swipe", ImmutableMap.of(
-                "elementId", element.getId(),
-                "percentage", 50,
-                "direction", direction
-        ));
-    }
     public static void verticalSwipeUp(AppiumDriver driver) {
         int startX = driver.manage().window().getSize().getWidth() / 2;
         int startY = (int) (driver.manage().window().getSize().getHeight() * 0.8);
