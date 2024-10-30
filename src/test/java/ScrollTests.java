@@ -11,6 +11,8 @@ public class ScrollTests {
     public void testScroll() throws MalformedURLException, InterruptedException {
         AndroidDriver driver =   Driver.getAndroidDriver("android");
         Thread.sleep(2000);
+        Utils.scrollToEnd(driver);
+        Utils.scrollToTop(driver);
         Utils.scrollToElement(driver, "secret_sauce");
         Utils.tapElement(driver, driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"standard_user\")")));
         Thread.sleep(2000);

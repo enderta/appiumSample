@@ -101,6 +101,10 @@ public class Utils {
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + text + "\"));"));
     }
 
+    public static void scrollToTop(AppiumDriver driver) {
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).flingToBeginning(10);"));
+    }
+
 
 
 }
