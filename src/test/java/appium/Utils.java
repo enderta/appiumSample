@@ -89,6 +89,18 @@ public class Utils {
 
         driver.perform(Collections.singletonList(swipe));
     }
+    public static void scrollToView(AppiumDriver driver, String text) {
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
+    }
+
+    public static void scrollToEnd(AppiumDriver driver) {
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollToEnd(10);"));
+    }
+
+    public static void scrollToElement(AppiumDriver driver, String text) {
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + text + "\"));"));
+    }
+
 
 
 }

@@ -39,7 +39,9 @@ public class suace {
 
     @When("the user logs in with username {string} and password {string}")
     public void the_user_logs_in_with_username_and_password(String username, String password) throws InterruptedException {
-        basic.login(username, password);
+        Utils.scrollToElement(driver, "secret_sauce");
+        Thread.sleep(2000);
+       // basic.login(username, password);
         Thread.sleep(2000);
     }
 
