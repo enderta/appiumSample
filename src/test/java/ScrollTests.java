@@ -2,6 +2,8 @@ import appium.Utils;
 import appium.driver.Driver;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Point;
 import io.appium.java_client.AppiumBy;
@@ -34,7 +36,9 @@ public class ScrollTests {
         Utils.swipe(driver, start, end);
         WebElement logout = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"LOGOUT\"]"));
         Utils.tapElement(driver, logout);
-
+String loginText = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"LOGIN\")")).getText();
+        Assertions.assertEquals("LOGIN", loginText);
+        driver.quit();
 
     }
 }
